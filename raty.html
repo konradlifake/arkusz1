@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="raty.css">
+    <title>Kurs</title>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="baner.png">
+        </div>
+            <nav>
+                <a href="index.html" class="linki">Strona Główna</a>
+                <a href="kurs.html" class="linki">Koszty rat</a>
+                <a href="https://moje-szkolenia.pl/" class="linki">Nasz partner</a>
+            </nav>
+
+    </header>
+    <main>
+        <h3>Oblicz miesięczną ratę</h3>
+        <input type="checkbox" class="kontrolki" id="React">Kurs React.js <br> 
+        <input type="checkbox" class="kontrolki" id="js">Kurs JavaScript <br>
+        Liczba rat: <input type="number" class="kontrolki" id="LiczbaRat"> <br>
+        <select class="kontrolki" id="Miasto">
+            <option value="Warszawa">Warszawa</option>
+            <option value="Katowice">Katowice</option>
+            <option value="Gdańsk">Gdańsk</option>
+        </select> <br>
+        <button onclick="Oblicz()" class="kontrolki">Oblicz</button><br>
+        <p id="wynik"></p>
+    </main>
+    <footer>
+        <p>Autor strony:0000000000</p> 
+    </footer>
+
+    <script>
+        function Oblicz() {
+            var KursReact = document.getElementById('React').checked;
+            var Kursjs = document.getElementById('js').checked;
+            var liczbaRat = document.getElementById('LiczbaRat').value;
+            var Miasto = document.getElementById('Miasto').value;
+
+            var cenaReact = 5000;
+            var cenaJS = 3000;
+        
+            var KwotaCałkowita = 0;
+            if (KursReact) {
+                KwotaCałkowita += cenaReact;
+            }
+            if (Kursjs) {
+                KwotaCałkowita += cenaJS;
+            }
+            if (KwotaCałkowita === 0) {
+                document.getElementById('wynik').innerHTML = "Wybierz przynajmniej jeden kurs.";
+                return;
+            }
+            if (isNaN(liczbaRat) || liczbaRat < 1) {
+                document.getElementById('wynik').innerHTML = `Kurs odbędzie się w ${Miasto}. Koszt całkowity: ${KwotaCałkowita} zł.`;
+                return;
+            }
+            var rata = KwotaCałkowita / liczbaRat;
+            document.getElementById('wynik').innerHTML = `Kurs odbędzie się w ${Miasto}. Koszt całkowity: ${KwotaCałkowita} zł. Miesięczna rata: ${rata.toFixed(2)} zł.`;
+
+            
+        }
+
+    </script>
+</body>
+</html>
